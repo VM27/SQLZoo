@@ -120,14 +120,14 @@ WHERE casting.ord = 1
 GROUP BY actor.name
 HAVING COUNT(*) >= 30;
 
--- # 15. List the 1978 films by order of cast list size.
-SELECT movie.title, COUNT(*)
-FROM movie
-JOIN casting
-ON movie.id = casting.movieid
-WHERE movie.yr = 1978
-GROUP BY movie.id
-ORDER BY COUNT(*) DESC
+-- # 15. List the 1978 films by order of cast list size.#updated this query
+SELECT title, COUNT(actorid) total_actors 
+FROM movie 
+JOIN casting 
+ON movie.id = movieid 
+WHERE yr = 1978 
+GROUP BY title 
+ORDER BY total_actors desc, title ;
 
 -- # 16. List all the people who have worked with 'Art Garfunkel'.
 SELECT a.name
