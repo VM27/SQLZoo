@@ -109,6 +109,17 @@ JOIN (SELECT actor.*, casting.movieid AS movieid
       WHERE casting.ord = 1) as a
 ON m.id = a.movieid
 ORDER BY m.title;
+--# OR can write as below:
+SELECT title,name
+FROM movie JOIN casting ON(movieid = movie.id
+			   AND ord =1)
+	    JOIN actor ON(actorid = actor.id)
+WHERE movie.id IN(
+     SELECT movieid FROM casting 
+       WHERE actorid IN(
+	SELECT id FROM actor
+	 WHERE name = 'Julie Andrews'));	
+
 
 -- # 14. Obtain a list of actors in who have had at least 30 starring
 -- # roles.
